@@ -18,7 +18,8 @@ public class Shading {
         tr.bresenhamLine(10, 20, 90, 220, 96, 96, 96, 96, 96, 96);
         tr.bresenhamLine(90, 220, 230, 140, 96, 96, 96, 224, 224, 224);
         
-        tr.display_values1();
+        //tr.display_values1();
+        tr.find_left_point();
         
         tr.write("/Users/ktd/Desktop/triangle.png");      
     }

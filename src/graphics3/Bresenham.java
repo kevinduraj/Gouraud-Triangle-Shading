@@ -30,9 +30,9 @@ public class Bresenham {
         image_final = new int[3][height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                image_final[0][i][j] = (byte) r;
-                image_final[1][i][j] = (byte) g;
-                image_final[2][i][j] = (byte) b;
+                image_final[0][i][j] = -1; //(byte) r;
+                image_final[1][i][j] = -1; //(byte) g;
+                image_final[2][i][j] = -1; //(byte) b;
 
             }
         }
@@ -101,12 +101,12 @@ public class Bresenham {
         float g_step = (float) (green2 - green1) / longest;
         float b_step = (float) (blue2 - blue1) / longest;
         
-        System.out.println("r_step=" + r_step + " g_step=" + g_step + " b_step=" + b_step);
+        //System.out.println("r_step=" + r_step + " g_step=" + g_step + " b_step=" + b_step);
         
         for (int i = 0; i <= longest; i++) {
             
-            System.out.println("Shortest=" + shortest);
-            System.out.println("Longest=" + longest + "\n");
+            //System.out.println("Shortest=" + shortest);
+            //System.out.println("Longest=" + longest + "\n");
             
             /*----------------------------------------------------------------*/
             /*                     Color Computation                          */
@@ -133,7 +133,7 @@ public class Bresenham {
     /*------------------------------------------------------------------------*/
     protected void set_pixel_final(int x, int y, int r, int g, int b) {
         
-        System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")"); 
+        //System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")"); 
         
         try {
             //System.out.println("y=" + x + " x=" + y);
@@ -149,7 +149,7 @@ public class Bresenham {
     /*------------------------------------------------------------------------*/
     protected void set_pixel1(int x, int y, int r, int g, int b) {
 
-        System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")");
+        //System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")");
 
         try {
             //System.out.println("y=" + x + " x=" + y);
