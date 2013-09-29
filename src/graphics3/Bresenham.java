@@ -96,12 +96,11 @@ public class Bresenham {
             System.out.println("Shortest=" + shortest);
             System.out.println("Longest=" + longest + "\n");
             
-            double r = r_step * i;
-            double g = g_step * i;
-            double b = b_step * i;
+            double r = red1   + r_step * i;
+            double g = green1 + g_step * i;
+            double b = blue1  + b_step * i;
             
-            //System.out.println("i=" + i + " red=" + r + " green=" + g + " blue=" + b); 
-            
+            //System.out.println("i=" + i + " red=" + r + " green=" + g + " blue=" + b);       
             set_pixel(x0, y0, (int)r, (int)g, (int)b);
             
             numerator += shortest;
@@ -121,7 +120,7 @@ public class Bresenham {
      */
     protected void set_pixel(int x, int y, int r, int g, int b) {
         
-        System.out.println(" red=" + r + " green=" + g + " blue=" + b); 
+        System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")"); 
         
         try {
             //System.out.println("y=" + x + " x=" + y);
