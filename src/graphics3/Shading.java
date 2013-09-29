@@ -14,9 +14,9 @@ public class Shading {
         
         Triangle tr = new Triangle(width, height, 0,0,0);
         
-        tr.bresenhamLine(150, 159, 400, 250, 128, 128, 128, 255, 255, 255);
-        //tr.bresenhamLine(150, 159, 200, 400, 0, 0, 0, 255, 255, 255);
-        //tr.bresenhamLine(200, 400, 400, 250, 10, 10, 10, 0, 0, 0);
+        tr.bresenhamLine(150, 159, 400, 250, 96, 96, 96, 224, 224, 224);
+        tr.bresenhamLine(150, 159, 200, 400, 96, 96, 96, 96, 96, 96);
+        tr.bresenhamLine(200, 400, 400, 250, 96, 96, 96, 224, 224, 224);
         
         tr.write("/Users/ktd/Desktop/triangle.png");      
     }
