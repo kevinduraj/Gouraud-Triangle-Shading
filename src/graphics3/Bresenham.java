@@ -35,35 +35,17 @@ public class Bresenham {
             }
         }
     }
-    /*--------------------------------------------------------------------------
-     * Drawing Circle using Bresenham Algorithm
-     */
-
-    public void bresenhamCircle(int x, int y, int radius, int r, int g, int b) {
-        int i = 0;
-        int j = radius;
-        while (i <= j) {
-            set_pixel(x + i, y - j, r, g, b);
-            set_pixel(x + j, y - i, r, g, b);
-            set_pixel(x + i, y + j, r, g, b);
-            set_pixel(x + j, y + i, r, g, b);
-            set_pixel(x - i, y - j, r, g, b);
-            set_pixel(x - j, y - i, r, g, b);
-            set_pixel(x - i, y + j, r, g, b);
-            set_pixel(x - j, y + i, r, g, b);
-            i++;
-            j = (int) (Math.sqrt(radius * radius - i * i) + 0.5);
-        }
-    }
-    /*--------------------------------------------------------------------------
-     *  Private method set_pixel sets pixel in the image
-     */
 
     /*--------------------------------------------------------------------------
      * Drawing Line using Bresenham Algorithm
      */
-    public void bresenhamLine(int x0, int y0, int x1, int y1, int r, int g, int b) 
+    public void bresenhamLine(
+                 int x0, int y0, int x1, int y1
+                ,int red1, int green1, int blue1
+                ,int red2, int green2, int blue2
+            ) 
     {
+        
         int delta_width = x1 - x0;
         int delta_height = y1 - y0;
         
@@ -87,8 +69,10 @@ public class Bresenham {
         } else if (delta_width > 0) {
             dx1 = 1;
         }
+        
         int longest = Math.abs(delta_width);
         int shortest = Math.abs(delta_height);
+        
         if (!(longest > shortest)) {
             longest = Math.abs(delta_height);
             shortest = Math.abs(delta_width);
@@ -100,8 +84,26 @@ public class Bresenham {
             dx1 = 0;
         }
         int numerator = longest >> 1;
+        
+        float r_step = (float)(red2-red1) / longest;
+        float g_step = (float)(green2 - green1) / longest;
+        float b_step = (float)(blue2 - blue1) / longest;
+        
+        System.out.println("r_step=" + r_step + " g_step=" + g_step + " b_step=" + b_step);
+        
         for (int i = 0; i <= longest; i++) {
-            set_pixel(x0, y0, r, g, b);
+            
+            System.out.println("Shortest=" + shortest);
+            System.out.println("Longest=" + longest + "\n");
+            
+            double r = r_step * i;
+            double g = g_step * i;
+            double b = b_step * i;
+            
+            //System.out.println("i=" + i + " red=" + r + " green=" + g + " blue=" + b); 
+            
+            set_pixel(x0, y0, (int)r, (int)g, (int)b);
+            
             numerator += shortest;
             if (!(numerator < longest)) {
                 numerator -= longest;
@@ -114,7 +116,13 @@ public class Bresenham {
         }
     }
 
+    /*--------------------------------------------------------------------------
+     * 
+     */
     protected void set_pixel(int x, int y, int r, int g, int b) {
+        
+        System.out.println(" red=" + r + " green=" + g + " blue=" + b); 
+        
         try {
             //System.out.println("y=" + x + " x=" + y);
             if (y > -1 && x > -1 && y < height && x < width) {
