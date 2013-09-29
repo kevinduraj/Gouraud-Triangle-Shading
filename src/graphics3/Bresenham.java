@@ -19,7 +19,7 @@ public class Bresenham {
     int width;
     
     public int[][][] image_final;
-    public int[][][] image1;
+    public int[][][] image;
 
     public Bresenham(int width_p, int height_p, int r, int g, int b) {
         System.out.println("Superclass ...");
@@ -37,12 +37,12 @@ public class Bresenham {
             }
         }
         /*---------------- Image 1 ------------------*/
-        image1 = new int[3][height][width];
+        image = new int[3][height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                image1[0][i][j] = -1;
-                image1[1][i][j] = -1;
-                image1[2][i][j] = -1;
+                image[0][i][j] = (byte) r;
+                image[1][i][j] = (byte) g;
+                image[2][i][j] = (byte) b;
 
             }
         }
@@ -147,7 +147,7 @@ public class Bresenham {
         }
     }
     /*------------------------------------------------------------------------*/
-    protected void set_pixel1(int x, int y, int r, int g, int b) {
+    protected void copy_image(int x, int y, int r, int g, int b) {
 
         //System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")");
 

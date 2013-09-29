@@ -50,7 +50,8 @@ public class Triangle extends Bresenham {
                 right_color_g=image_final[1][y][x];
                 right_color_b=image_final[2][y][x];
                 
-                System.out.println("right point(y=" + y + " x=" + x + ")");
+                System.out.println("right point(y=" + y + " x=" + x + ")\n");
+                break;
 
             }
         }
@@ -58,8 +59,9 @@ public class Triangle extends Bresenham {
 
     public void find_left_point() {
 
-        for (int y = 0; y < height; ++y) {
-            for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; y++) {
+            
+            for (int x = 0; x < width; x++) {
 
                 if (image_final[0][y][x] != -1) {
 
@@ -73,10 +75,11 @@ public class Triangle extends Bresenham {
                     System.out.println("left point(y=" + y + " x=" + x + ")");
                     find_right_point(y);
                     
-                    bresenhamLine(left_point_y, left_point_x
-                                  ,right_point_y, right_point_x
+                    bresenhamLine(left_point_x, left_point_y
+                                  ,right_point_x, right_point_y
                                   ,left_color_r,left_color_g,left_color_b
                                   ,right_color_r,right_color_g,right_color_b);
+                    break;
                 }
             }
         }
