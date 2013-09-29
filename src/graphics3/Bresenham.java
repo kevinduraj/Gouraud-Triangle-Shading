@@ -16,21 +16,33 @@ import javax.imageio.ImageIO;
 public class Bresenham {
 
     int height;
-    public int[][][] image;
     int width;
+    
+    public int[][][] image_final;
+    public int[][][] image1;
 
     public Bresenham(int width_p, int height_p, int r, int g, int b) {
         System.out.println("Superclass ...");
-        this.width = width_p;
+        this.width  = width_p;
         this.height = height_p;
-        image = new int[3][height][width];
-
+        
+        /*---------------- Image Final ------------------*/
+        image_final = new int[3][height][width];
         for (int i = 0; i < height; ++i) {
-
             for (int j = 0; j < width; ++j) {
-                image[0][i][j] = (byte) r;
-                image[1][i][j] = (byte) g;
-                image[2][i][j] = (byte) b;
+                image_final[0][i][j] = (byte) r;
+                image_final[1][i][j] = (byte) g;
+                image_final[2][i][j] = (byte) b;
+
+            }
+        }
+        /*---------------- Image 1 ------------------*/
+        image1 = new int[3][height][width];
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                image1[0][i][j] = -1;
+                image1[1][i][j] = -1;
+                image1[2][i][j] = -1;
 
             }
         }
@@ -85,9 +97,9 @@ public class Bresenham {
         }
         int numerator = longest >> 1;
         
-        float r_step = (float)(red2-red1) / longest;
-        float g_step = (float)(green2 - green1) / longest;
-        float b_step = (float)(blue2 - blue1) / longest;
+        float r_step = (float) (red2-red1) / longest;
+        float g_step = (float) (green2 - green1) / longest;
+        float b_step = (float) (blue2 - blue1) / longest;
         
         System.out.println("r_step=" + r_step + " g_step=" + g_step + " b_step=" + b_step);
         
@@ -96,12 +108,15 @@ public class Bresenham {
             System.out.println("Shortest=" + shortest);
             System.out.println("Longest=" + longest + "\n");
             
+            /*----------------------------------------------------------------*/
+            /*                     Color Computation                          */
             double r = red1   + r_step * i;
             double g = green1 + g_step * i;
             double b = blue1  + b_step * i;
             
             //System.out.println("i=" + i + " red=" + r + " green=" + g + " blue=" + b);       
-            set_pixel(x0, y0, (int)r, (int)g, (int)b);
+            set_pixel_final(x0, y0, (int)Math.abs(r), (int)Math.abs(g), (int)Math.abs(b));
+            /*---------------------------------------------------------------*/
             
             numerator += shortest;
             if (!(numerator < longest)) {
@@ -115,35 +130,54 @@ public class Bresenham {
         }
     }
 
-    /*--------------------------------------------------------------------------
-     * 
-     */
-    protected void set_pixel(int x, int y, int r, int g, int b) {
+    /*------------------------------------------------------------------------*/
+    protected void set_pixel_final(int x, int y, int r, int g, int b) {
         
         System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")"); 
         
         try {
             //System.out.println("y=" + x + " x=" + y);
             if (y > -1 && x > -1 && y < height && x < width) {
-                image[0][y][x] = (byte) r;
-                image[1][y][x] = (byte) g;
-                image[2][y][x] = (byte) b;
+                image_final[0][y][x] = (byte) r;
+                image_final[1][y][x] = (byte) g;
+                image_final[2][y][x] = (byte) b;
+            }
+        } catch (Exception e) {
+            System.err.println("Exception: y=" + y + " x=" + x);
+        }
+    }
+    /*------------------------------------------------------------------------*/
+    protected void set_pixel1(int x, int y, int r, int g, int b) {
+
+        System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")");
+
+        try {
+            //System.out.println("y=" + x + " x=" + y);
+            if (y > -1 && x > -1 && y < height && x < width) {
+                image_final[0][y][x] = (byte) r;
+                image_final[1][y][x] = (byte) g;
+                image_final[2][y][x] = (byte) b;
             }
         } catch (Exception e) {
             System.err.println("Exception: y=" + y + " x=" + x);
         }
     }
 
+
+
     /*--------------------------------------------------------------------------
-     *  Move image into BufferedImage object then write Image into the File
+     *  Move image_final into BufferedImage object then write Image into the File
      */
     public void write(String filename) {
+        
         System.out.println("Writing image into: " + filename);
+        
         try {
             BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            
             for (int i = 0; i < height; ++i) {
                 for (int j = 0; j < width; ++j) {
-                    int pixel = (image[0][i][j] << 16) | (image[1][i][j] << 8) | (image[2][i][j]);
+                    int pixel = (image_final[0][i][j] << 16) | (image_final[1][i][j] << 8) | (image_final[2][i][j]);
                     bi.setRGB(j, i, pixel);
                 }
             }

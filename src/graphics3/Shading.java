@@ -9,14 +9,16 @@ public class Shading {
 
     public static void main(String[] args) {
 
-        int width = 600;
-        int height = 600;
+        int width  = 250;
+        int height = 250;
         
         Triangle tr = new Triangle(width, height, 0,0,0);
         
-        tr.bresenhamLine(150, 159, 400, 250, 96, 96, 96, 224, 224, 224);
-        tr.bresenhamLine(150, 159, 200, 400, 96, 96, 96, 96, 96, 96);
-        tr.bresenhamLine(200, 400, 400, 250, 96, 96, 96, 224, 224, 224);
+        tr.bresenhamLine(10, 20, 230, 140, 96, 96, 96, 224, 224, 224);
+        tr.bresenhamLine(10, 20, 90, 220, 96, 96, 96, 96, 96, 96);
+        tr.bresenhamLine(90, 220, 230, 140, 96, 96, 96, 224, 224, 224);
+        
+        tr.display_values1();
         
         tr.write("/Users/ktd/Desktop/triangle.png");      
     }
