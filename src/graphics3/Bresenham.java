@@ -138,33 +138,15 @@ public class Bresenham {
         try {
             //System.out.println("y=" + x + " x=" + y);
             if (y > -1 && x > -1 && y < height && x < width) {
-                image_final[0][y][x] = (byte) r;
-                image_final[1][y][x] = (byte) g;
-                image_final[2][y][x] = (byte) b;
+                image_final[0][y][x] =  r;
+                image_final[1][y][x] =  g;
+                image_final[2][y][x] =  b;
             }
         } catch (Exception e) {
             System.err.println("Exception: y=" + y + " x=" + x);
         }
     }
-    /*------------------------------------------------------------------------*/
-    protected void copy_image(int x, int y, int r, int g, int b) {
-
-        //System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")");
-
-        try {
-            //System.out.println("y=" + x + " x=" + y);
-            if (y > -1 && x > -1 && y < height && x < width) {
-                image_final[0][y][x] = (byte) r;
-                image_final[1][y][x] = (byte) g;
-                image_final[2][y][x] = (byte) b;
-            }
-        } catch (Exception e) {
-            System.err.println("Exception: y=" + y + " x=" + x);
-        }
-    }
-
-
-
+    
     /*--------------------------------------------------------------------------
      *  Move image_final into BufferedImage object then write Image into the File
      */
