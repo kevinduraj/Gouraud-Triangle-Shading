@@ -9,14 +9,30 @@ public class Shading {
 
     public static void main(String[] args) {
 
-        int width  = 250;
-        int height = 250;
+        int width  = 640;
+        int height = 640;
         
         Triangle tr = new Triangle(width, height, 0,0,0);
         
-        tr.bresenhamLine(10, 20, 230, 140, 96, 96, 96, 224, 224, 224);
-        tr.bresenhamLine(10, 20, 90, 220, 96, 96, 96, 96, 96, 96);
-        tr.bresenhamLine(90, 220, 230, 140, 96, 96, 96, 224, 224, 224);
+        int[] point1 = { 100, 170 };
+        int[] point2 = { 330, 240 };
+        int[] point3 = { 190, 320 };
+        
+        int[] color1 = { 255, 0 ,0};
+        int[] color2 = { 0, 255, 0 };
+        int[] color3 = { 0, 0, 255 };
+        
+        tr.bresenhamLine(point1[0], point1[1],  point2[0], point2[1]
+                , color1[0], color1[1], color1[2]
+                , color2[0], color2[1], color2[2]);
+        
+        tr.bresenhamLine(point1[0], point1[1],  point3[0], point3[1]
+                , color1[0], color1[1], color1[2]
+                , color3[0], color3[1], color3[2]);
+        
+        tr.bresenhamLine(point2[0], point2[1], point3[0], point3[1]
+                , color2[0], color2[1], color2[2]
+                , color3[0], color3[1], color3[2]);
         
         //tr.display_values1();
         tr.find_left_point();

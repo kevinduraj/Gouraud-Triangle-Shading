@@ -52,7 +52,8 @@ public class Bresenham {
      * Drawing Line using Bresenham Algorithm
      */
     public void bresenhamLine(
-                 int x0, int y0, int x1, int y1
+                 int x0, int y0
+                ,int x1, int y1
                 ,int red1, int green1, int blue1
                 ,int red2, int green2, int blue2
             ) 
