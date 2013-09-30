@@ -10,16 +10,13 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/**
- * Bresenham Image Class
- */
+/*----------------------------------------------------------------------------*/
 public class Bresenham {
 
     int height;
     int width;
     
     public int[][][] image_final;
-    public int[][][] image;
 
     public Bresenham(int width_p, int height_p, int r, int g, int b) {
         System.out.println("Superclass ...");
@@ -33,16 +30,6 @@ public class Bresenham {
                 image_final[0][i][j] = -1; //(byte) r;
                 image_final[1][i][j] = -1; //(byte) g;
                 image_final[2][i][j] = -1; //(byte) b;
-
-            }
-        }
-        /*---------------- Image 1 ------------------*/
-        image = new int[3][height][width];
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                image[0][i][j] = (byte) r;
-                image[1][i][j] = (byte) g;
-                image[2][i][j] = (byte) b;
 
             }
         }

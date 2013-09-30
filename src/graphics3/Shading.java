@@ -9,34 +9,29 @@ public class Shading {
 
     public static void main(String[] args) {
 
-        int width  = 640;
-        int height = 640;
+        int width  = 400;
+        int height = 400;
         
-        Triangle tr = new Triangle(width, height, 0,0,0);
+        Triangle triangle = new Triangle(width, height, 0,0,0);
         
-        int[] point1 = { 100, 170 };
-        int[] point2 = { 330, 240 };
-        int[] point3 = { 190, 320 };
+        int[] point1 = { 90, 43 };
+        int[] point2 = { 105, 123 };
+        int[] point3 = { 175, 76 };
         
-        int[] color1 = { 255, 0 ,0};
-        int[] color2 = { 0, 255, 0 };
-        int[] color3 = { 0, 0, 255 };
+        int[] color1 = { 128, 128 ,128};
+        int[] color2 = { 255, 255, 255};
+        int[] color3 = { 1, 1, 1 };
         
-        tr.bresenhamLine(point1[0], point1[1],  point2[0], point2[1]
-                , color1[0], color1[1], color1[2]
-                , color2[0], color2[1], color2[2]);
+        //--- Rainbow colors
+        //int[] color1 = { 255, 0 ,0};
+        //int[] color2 = { 0, 255, 0 };
+        //int[] color3 = { 0, 0, 255 };
         
-        tr.bresenhamLine(point1[0], point1[1],  point3[0], point3[1]
-                , color1[0], color1[1], color1[2]
-                , color3[0], color3[1], color3[2]);
         
-        tr.bresenhamLine(point2[0], point2[1], point3[0], point3[1]
-                , color2[0], color2[1], color2[2]
-                , color3[0], color3[1], color3[2]);
+        triangle.draw_triangle(point1, point2, point3, color1, color2,  color3);
+        triangle.write("/Users/ktd/Desktop/triangle.png");  
         
-        //tr.display_values1();
-        tr.find_left_point();
-        
-        tr.write("/Users/ktd/Desktop/triangle.png");      
     }
+
+
 }
