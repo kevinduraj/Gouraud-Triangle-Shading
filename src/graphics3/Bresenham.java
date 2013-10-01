@@ -39,12 +39,17 @@ public class Bresenham {
      * Drawing Line using Bresenham Algorithm
      */
     public void bresenhamLine(
-                 int x0, int y0
-                ,int x1, int y1
+                 int[] point1
+                ,int[] point2
                 ,int red1, int green1, int blue1
                 ,int red2, int green2, int blue2
             ) 
     {
+        
+        int x0 = point1[0]; 
+        int y0 = point1[1];
+        int x1 = point2[0]; 
+        int y1 = point2[1];
         
         int delta_width = x1 - x0;
         int delta_height = y1 - y0;
@@ -120,9 +125,7 @@ public class Bresenham {
 
     /*------------------------------------------------------------------------*/
     protected void set_pixel_final(int x, int y, int r, int g, int b) {
-        
-        //System.out.println("set_pixel(red=" + r + " green=" + g + " blue=" + b + ")"); 
-        
+                
         try {
             //System.out.println("y=" + x + " x=" + y);
             if (y > -1 && x > -1 && y < height && x < width) {

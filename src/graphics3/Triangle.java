@@ -4,6 +4,7 @@ public class Triangle extends Bresenham {
 
     int left_point_x;
     int left_point_y;
+    int[] left_point = new int[2];
     
     int left_color_r;
     int left_color_g;
@@ -11,6 +12,7 @@ public class Triangle extends Bresenham {
     
     int right_point_x;
     int right_point_y;
+    int[] right_point = new int[2];
     
     int right_color_r;
     int right_color_g;
@@ -26,11 +28,11 @@ public class Triangle extends Bresenham {
     public void draw_triangle(
             int[] point1, int[] point2, int[] point3, int[] color1, int[] color2, int[] color3) {
 
-        bresenhamLine(point1[0], point1[1], point2[0], point2[1], color1[0], color1[1], color1[2], color2[0], color2[1], color2[2]);
+        bresenhamLine(point1, point2, color1[0], color1[1], color1[2], color2[0], color2[1], color2[2]);
 
-        bresenhamLine(point1[0], point1[1], point3[0], point3[1], color1[0], color1[1], color1[2], color3[0], color3[1], color3[2]);
+        bresenhamLine(point1, point3, color1[0], color1[1], color1[2], color3[0], color3[1], color3[2]);
 
-        bresenhamLine(point2[0], point2[1], point3[0], point3[1], color2[0], color2[1], color2[2], color3[0], color3[1], color3[2]);
+        bresenhamLine(point2, point3, color2[0], color2[1], color2[2], color3[0], color3[1], color3[2]);
 
         find_left_point();
     }
@@ -60,8 +62,8 @@ public class Triangle extends Bresenham {
 
             if (image_final[0][y][x] != -1) {
 
-                right_point_y = y;
-                right_point_x = x;
+                right_point[1] = y;
+                right_point[0] = x;
 
                 right_color_r = image_final[0][y][x];
                 right_color_g = image_final[1][y][x];
@@ -83,8 +85,8 @@ public class Triangle extends Bresenham {
 
                 if (image_final[0][y][x] != -1) {
 
-                    left_point_y = y;
-                    left_point_x = x;
+                    left_point[1] = y;
+                    left_point[0] = x;
 
                     left_color_r = image_final[0][y][x];
                     left_color_g = image_final[1][y][x];
@@ -95,7 +97,13 @@ public class Triangle extends Bresenham {
                     System.out.print("Color " + left_color_r + "." + left_color_g + "." + left_color_b);
                     System.out.println(" " + right_color_r + "." + right_color_g + "." + right_color_b + "\n");
 
-                    bresenhamLine(left_point_x, left_point_y, right_point_x, right_point_y, left_color_r, left_color_g, left_color_b, right_color_r, right_color_g, right_color_b);
+                    bresenhamLine(left_point, right_point
+                            , left_color_r
+                            , left_color_g
+                            , left_color_b
+                            , right_color_r
+                            , right_color_g
+                            , right_color_b);
                     break;
                 }
             }

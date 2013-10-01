@@ -9,8 +9,8 @@ public class Shading {
 
     public static void main(String[] args) {
 
-        int width  = 400;
-        int height = 400;
+        int width  = 300;
+        int height = 300;
         
         Triangle triangle = new Triangle(width, height, 0,0,0);
         
