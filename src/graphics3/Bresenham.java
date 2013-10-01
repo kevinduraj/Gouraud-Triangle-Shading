@@ -16,23 +16,35 @@ public class Bresenham {
     int height;
     int width;
     
+    public int[][][] image1;
     public int[][][] image_final;
+    
 
     public Bresenham(int width_p, int height_p, int r, int g, int b) {
         System.out.println("Superclass ...");
         this.width  = width_p;
         this.height = height_p;
         
-        /*---------------- Image Final ------------------*/
-        image_final = new int[3][height][width];
+        /*---------------- Image1 ------------------*/
+        image1 = new int[3][height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                image_final[0][i][j] = -1; //(byte) r;
-                image_final[1][i][j] = -1; //(byte) g;
-                image_final[2][i][j] = -1; //(byte) b;
+                image1[0][i][j] = -1; //(byte) r;
+                image1[1][i][j] = -1; //(byte) g;
+                image1[2][i][j] = -1; //(byte) b;
 
             }
         }
+        /*------------- Image Final ---------------*/
+        image_final = new int[3][height][width];
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                image_final[0][i][j] = r;
+                image_final[1][i][j] = g;
+                image_final[2][i][j] = b;
+
+            }
+        }        
     }
 
     /*--------------------------------------------------------------------------
@@ -129,9 +141,9 @@ public class Bresenham {
         try {
             //System.out.println("y=" + x + " x=" + y);
             if (y > -1 && x > -1 && y < height && x < width) {
-                image_final[0][y][x] =  r;
-                image_final[1][y][x] =  g;
-                image_final[2][y][x] =  b;
+                image1[0][y][x] =  r;
+                image1[1][y][x] =  g;
+                image1[2][y][x] =  b;
             }
         } catch (Exception e) {
             System.err.println("Exception: y=" + y + " x=" + x);
@@ -139,7 +151,7 @@ public class Bresenham {
     }
     
     /*--------------------------------------------------------------------------
-     *  Move image_final into BufferedImage object then write Image into the File
+     *  Move image1 into BufferedImage object then write Image into the File
      */
     public void write(String filename) {
         
@@ -150,7 +162,9 @@ public class Bresenham {
             
             for (int i = 0; i < height; ++i) {
                 for (int j = 0; j < width; ++j) {
-                    int pixel = (image_final[0][i][j] << 16) | (image_final[1][i][j] << 8) | (image_final[2][i][j]);
+                    int pixel = (image_final[0][i][j] << 16) 
+                              | (image_final[1][i][j] << 8) 
+                              | (image_final[2][i][j]);
                     bi.setRGB(j, i, pixel);
                 }
             }
@@ -161,16 +175,16 @@ public class Bresenham {
         }
         System.out.println("Sucessfull");
     }
+    /*------------------------------------------------------------------------*/
     public void convert2background() {
  
         for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                
-                if(image_final[0][i][j] == -1) image_final[0][i][j] = 0;
-                if(image_final[1][i][j] == -1) image_final[1][i][j] = 0;
-                if(image_final[2][i][j] == -1) image_final[2][i][j] = 0;
-
+            for (int j = 0; j < width; ++j) {                
+                if(image1[0][i][j] != -1) image_final[0][i][j] = image1[0][i][j];
+                if(image1[1][i][j] != -1) image_final[1][i][j] = image1[1][i][j];
+                if(image1[2][i][j] != -1) image_final[2][i][j] = image1[2][i][j];
             }
         }
     }
+    /*------------------------------------------------------------------------*/
 }
