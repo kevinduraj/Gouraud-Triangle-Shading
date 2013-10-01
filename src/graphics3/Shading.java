@@ -29,6 +29,7 @@ public class Shading {
         
         
         triangle.draw_triangle(point1, point2, point3, color1, color2,  color3);
+        triangle.convert2background();
         triangle.write("/Users/ktd/Desktop/triangle.png");  
         
     }

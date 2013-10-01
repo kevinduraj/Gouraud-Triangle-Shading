@@ -161,4 +161,16 @@ public class Bresenham {
         }
         System.out.println("Sucessfull");
     }
+    public void convert2background() {
+ 
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                
+                if(image_final[0][i][j] == -1) image_final[0][i][j] = 0;
+                if(image_final[1][i][j] == -1) image_final[1][i][j] = 0;
+                if(image_final[2][i][j] == -1) image_final[2][i][j] = 0;
+
+            }
+        }
+    }
 }
